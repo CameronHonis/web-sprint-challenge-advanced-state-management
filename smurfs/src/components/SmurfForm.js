@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ADD_SMURFS } from '../reducers/smurfReducer'
+import axios from 'axios'
 
 const initialState = {
   name: '',
@@ -16,6 +17,9 @@ const SmurfForm = props => {
   const onClick = e => {
     e.preventDefault()
     //validate
+    axios.post('http://localhost:3333/smurfs', formState)
+      .then(res => console.log('post successful'))
+      .catch(err => err)
     dispatch({type: ADD_SMURFS, smurfs: [formState]})
   }
 
